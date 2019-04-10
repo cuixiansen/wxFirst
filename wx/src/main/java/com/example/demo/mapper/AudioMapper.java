@@ -2,7 +2,11 @@ package com.example.demo.mapper;
 
 import com.example.demo.entity.Audio;
 import com.example.demo.entity.AudioExample;
+import com.example.demo.entity.Vedio;
+
 import java.util.List;
+import java.util.Map;
+
 import org.apache.ibatis.annotations.Param;
 
 public interface AudioMapper {
@@ -27,4 +31,10 @@ public interface AudioMapper {
     int updateByPrimaryKeySelective(Audio record);
 
     int updateByPrimaryKey(Audio record);
+    
+    List<Audio> selectAudioByPage(Map map);
+    
+    List<Audio> selectAudioByConditionByPage (Map map);
+    
+    List<Audio> selectAudioByNominateByDesc (int nominate);
 }

@@ -624,6 +624,206 @@ public class VedioExample {
             addCriterion("vedio_date not between", value1, value2, "vedioDate");
             return (Criteria) this;
         }
+
+        public Criteria andVedioTextIsNull() {
+            addCriterion("vedio_text is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andVedioTextIsNotNull() {
+            addCriterion("vedio_text is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andVedioTextEqualTo(String value) {
+            addCriterion("vedio_text =", value, "vedioText");
+            return (Criteria) this;
+        }
+
+        public Criteria andVedioTextNotEqualTo(String value) {
+            addCriterion("vedio_text <>", value, "vedioText");
+            return (Criteria) this;
+        }
+
+        public Criteria andVedioTextGreaterThan(String value) {
+            addCriterion("vedio_text >", value, "vedioText");
+            return (Criteria) this;
+        }
+
+        public Criteria andVedioTextGreaterThanOrEqualTo(String value) {
+            addCriterion("vedio_text >=", value, "vedioText");
+            return (Criteria) this;
+        }
+
+        public Criteria andVedioTextLessThan(String value) {
+            addCriterion("vedio_text <", value, "vedioText");
+            return (Criteria) this;
+        }
+
+        public Criteria andVedioTextLessThanOrEqualTo(String value) {
+            addCriterion("vedio_text <=", value, "vedioText");
+            return (Criteria) this;
+        }
+
+        public Criteria andVedioTextLike(String value) {
+            addCriterion("vedio_text like", value, "vedioText");
+            return (Criteria) this;
+        }
+
+        public Criteria andVedioTextNotLike(String value) {
+            addCriterion("vedio_text not like", value, "vedioText");
+            return (Criteria) this;
+        }
+
+        public Criteria andVedioTextIn(List<String> values) {
+            addCriterion("vedio_text in", values, "vedioText");
+            return (Criteria) this;
+        }
+
+        public Criteria andVedioTextNotIn(List<String> values) {
+            addCriterion("vedio_text not in", values, "vedioText");
+            return (Criteria) this;
+        }
+
+        public Criteria andVedioTextBetween(String value1, String value2) {
+            addCriterion("vedio_text between", value1, value2, "vedioText");
+            return (Criteria) this;
+        }
+
+        public Criteria andVedioTextNotBetween(String value1, String value2) {
+            addCriterion("vedio_text not between", value1, value2, "vedioText");
+            return (Criteria) this;
+        }
+
+        public Criteria andVedioDescIsNull() {
+            addCriterion("vedio_desc is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andVedioDescIsNotNull() {
+            addCriterion("vedio_desc is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andVedioDescEqualTo(String value) {
+            addCriterion("vedio_desc =", value, "vedioDesc");
+            return (Criteria) this;
+        }
+
+        public Criteria andVedioDescNotEqualTo(String value) {
+            addCriterion("vedio_desc <>", value, "vedioDesc");
+            return (Criteria) this;
+        }
+
+        public Criteria andVedioDescGreaterThan(String value) {
+            addCriterion("vedio_desc >", value, "vedioDesc");
+            return (Criteria) this;
+        }
+
+        public Criteria andVedioDescGreaterThanOrEqualTo(String value) {
+            addCriterion("vedio_desc >=", value, "vedioDesc");
+            return (Criteria) this;
+        }
+
+        public Criteria andVedioDescLessThan(String value) {
+            addCriterion("vedio_desc <", value, "vedioDesc");
+            return (Criteria) this;
+        }
+
+        public Criteria andVedioDescLessThanOrEqualTo(String value) {
+            addCriterion("vedio_desc <=", value, "vedioDesc");
+            return (Criteria) this;
+        }
+
+        public Criteria andVedioDescLike(String value) {
+            addCriterion("vedio_desc like", value, "vedioDesc");
+            return (Criteria) this;
+        }
+
+        public Criteria andVedioDescNotLike(String value) {
+            addCriterion("vedio_desc not like", value, "vedioDesc");
+            return (Criteria) this;
+        }
+
+        public Criteria andVedioDescIn(List<String> values) {
+            addCriterion("vedio_desc in", values, "vedioDesc");
+            return (Criteria) this;
+        }
+
+        public Criteria andVedioDescNotIn(List<String> values) {
+            addCriterion("vedio_desc not in", values, "vedioDesc");
+            return (Criteria) this;
+        }
+
+        public Criteria andVedioDescBetween(String value1, String value2) {
+            addCriterion("vedio_desc between", value1, value2, "vedioDesc");
+            return (Criteria) this;
+        }
+
+        public Criteria andVedioDescNotBetween(String value1, String value2) {
+            addCriterion("vedio_desc not between", value1, value2, "vedioDesc");
+            return (Criteria) this;
+        }
+
+        public Criteria andVedioNumIsNull() {
+            addCriterion("vedio_num is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andVedioNumIsNotNull() {
+            addCriterion("vedio_num is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andVedioNumEqualTo(Integer value) {
+            addCriterion("vedio_num =", value, "vedioNum");
+            return (Criteria) this;
+        }
+
+        public Criteria andVedioNumNotEqualTo(Integer value) {
+            addCriterion("vedio_num <>", value, "vedioNum");
+            return (Criteria) this;
+        }
+
+        public Criteria andVedioNumGreaterThan(Integer value) {
+            addCriterion("vedio_num >", value, "vedioNum");
+            return (Criteria) this;
+        }
+
+        public Criteria andVedioNumGreaterThanOrEqualTo(Integer value) {
+            addCriterion("vedio_num >=", value, "vedioNum");
+            return (Criteria) this;
+        }
+
+        public Criteria andVedioNumLessThan(Integer value) {
+            addCriterion("vedio_num <", value, "vedioNum");
+            return (Criteria) this;
+        }
+
+        public Criteria andVedioNumLessThanOrEqualTo(Integer value) {
+            addCriterion("vedio_num <=", value, "vedioNum");
+            return (Criteria) this;
+        }
+
+        public Criteria andVedioNumIn(List<Integer> values) {
+            addCriterion("vedio_num in", values, "vedioNum");
+            return (Criteria) this;
+        }
+
+        public Criteria andVedioNumNotIn(List<Integer> values) {
+            addCriterion("vedio_num not in", values, "vedioNum");
+            return (Criteria) this;
+        }
+
+        public Criteria andVedioNumBetween(Integer value1, Integer value2) {
+            addCriterion("vedio_num between", value1, value2, "vedioNum");
+            return (Criteria) this;
+        }
+
+        public Criteria andVedioNumNotBetween(Integer value1, Integer value2) {
+            addCriterion("vedio_num not between", value1, value2, "vedioNum");
+            return (Criteria) this;
+        }
     }
 
     public static class Criteria extends GeneratedCriteria {

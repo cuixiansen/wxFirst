@@ -245,52 +245,52 @@ public class AudioExample {
             return (Criteria) this;
         }
 
-        public Criteria andAudioPriceEqualTo(Integer value) {
+        public Criteria andAudioPriceEqualTo(Double value) {
             addCriterion("audio_price =", value, "audioPrice");
             return (Criteria) this;
         }
 
-        public Criteria andAudioPriceNotEqualTo(Integer value) {
+        public Criteria andAudioPriceNotEqualTo(Double value) {
             addCriterion("audio_price <>", value, "audioPrice");
             return (Criteria) this;
         }
 
-        public Criteria andAudioPriceGreaterThan(Integer value) {
+        public Criteria andAudioPriceGreaterThan(Double value) {
             addCriterion("audio_price >", value, "audioPrice");
             return (Criteria) this;
         }
 
-        public Criteria andAudioPriceGreaterThanOrEqualTo(Integer value) {
+        public Criteria andAudioPriceGreaterThanOrEqualTo(Double value) {
             addCriterion("audio_price >=", value, "audioPrice");
             return (Criteria) this;
         }
 
-        public Criteria andAudioPriceLessThan(Integer value) {
+        public Criteria andAudioPriceLessThan(Double value) {
             addCriterion("audio_price <", value, "audioPrice");
             return (Criteria) this;
         }
 
-        public Criteria andAudioPriceLessThanOrEqualTo(Integer value) {
+        public Criteria andAudioPriceLessThanOrEqualTo(Double value) {
             addCriterion("audio_price <=", value, "audioPrice");
             return (Criteria) this;
         }
 
-        public Criteria andAudioPriceIn(List<Integer> values) {
+        public Criteria andAudioPriceIn(List<Double> values) {
             addCriterion("audio_price in", values, "audioPrice");
             return (Criteria) this;
         }
 
-        public Criteria andAudioPriceNotIn(List<Integer> values) {
+        public Criteria andAudioPriceNotIn(List<Double> values) {
             addCriterion("audio_price not in", values, "audioPrice");
             return (Criteria) this;
         }
 
-        public Criteria andAudioPriceBetween(Integer value1, Integer value2) {
+        public Criteria andAudioPriceBetween(Double value1, Double value2) {
             addCriterion("audio_price between", value1, value2, "audioPrice");
             return (Criteria) this;
         }
 
-        public Criteria andAudioPriceNotBetween(Integer value1, Integer value2) {
+        public Criteria andAudioPriceNotBetween(Double value1, Double value2) {
             addCriterion("audio_price not between", value1, value2, "audioPrice");
             return (Criteria) this;
         }
@@ -305,52 +305,62 @@ public class AudioExample {
             return (Criteria) this;
         }
 
-        public Criteria andAudioImgSrcEqualTo(Double value) {
+        public Criteria andAudioImgSrcEqualTo(String value) {
             addCriterion("audio_img_src =", value, "audioImgSrc");
             return (Criteria) this;
         }
 
-        public Criteria andAudioImgSrcNotEqualTo(Double value) {
+        public Criteria andAudioImgSrcNotEqualTo(String value) {
             addCriterion("audio_img_src <>", value, "audioImgSrc");
             return (Criteria) this;
         }
 
-        public Criteria andAudioImgSrcGreaterThan(Double value) {
+        public Criteria andAudioImgSrcGreaterThan(String value) {
             addCriterion("audio_img_src >", value, "audioImgSrc");
             return (Criteria) this;
         }
 
-        public Criteria andAudioImgSrcGreaterThanOrEqualTo(Double value) {
+        public Criteria andAudioImgSrcGreaterThanOrEqualTo(String value) {
             addCriterion("audio_img_src >=", value, "audioImgSrc");
             return (Criteria) this;
         }
 
-        public Criteria andAudioImgSrcLessThan(Double value) {
+        public Criteria andAudioImgSrcLessThan(String value) {
             addCriterion("audio_img_src <", value, "audioImgSrc");
             return (Criteria) this;
         }
 
-        public Criteria andAudioImgSrcLessThanOrEqualTo(Double value) {
+        public Criteria andAudioImgSrcLessThanOrEqualTo(String value) {
             addCriterion("audio_img_src <=", value, "audioImgSrc");
             return (Criteria) this;
         }
 
-        public Criteria andAudioImgSrcIn(List<Double> values) {
+        public Criteria andAudioImgSrcLike(String value) {
+            addCriterion("audio_img_src like", value, "audioImgSrc");
+            return (Criteria) this;
+        }
+
+        public Criteria andAudioImgSrcNotLike(String value) {
+            addCriterion("audio_img_src not like", value, "audioImgSrc");
+            return (Criteria) this;
+        }
+
+        public Criteria andAudioImgSrcIn(List<String> values) {
             addCriterion("audio_img_src in", values, "audioImgSrc");
             return (Criteria) this;
         }
 
-        public Criteria andAudioImgSrcNotIn(List<Double> values) {
+        public Criteria andAudioImgSrcNotIn(List<String> values) {
             addCriterion("audio_img_src not in", values, "audioImgSrc");
             return (Criteria) this;
         }
 
-        public Criteria andAudioImgSrcBetween(Double value1, Double value2) {
+        public Criteria andAudioImgSrcBetween(String value1, String value2) {
             addCriterion("audio_img_src between", value1, value2, "audioImgSrc");
             return (Criteria) this;
         }
 
-        public Criteria andAudioImgSrcNotBetween(Double value1, Double value2) {
+        public Criteria andAudioImgSrcNotBetween(String value1, String value2) {
             addCriterion("audio_img_src not between", value1, value2, "audioImgSrc");
             return (Criteria) this;
         }
@@ -495,63 +505,63 @@ public class AudioExample {
             return (Criteria) this;
         }
 
-        public Criteria andAudioOminateIsNull() {
-            addCriterion("audio_ominate is null");
+        public Criteria andAudioNominateIsNull() {
+            addCriterion("audio_nominate is null");
             return (Criteria) this;
         }
 
-        public Criteria andAudioOminateIsNotNull() {
-            addCriterion("audio_ominate is not null");
+        public Criteria andAudioNominateIsNotNull() {
+            addCriterion("audio_nominate is not null");
             return (Criteria) this;
         }
 
-        public Criteria andAudioOminateEqualTo(Integer value) {
-            addCriterion("audio_ominate =", value, "audioOminate");
+        public Criteria andAudioNominateEqualTo(Integer value) {
+            addCriterion("audio_nominate =", value, "audioNominate");
             return (Criteria) this;
         }
 
-        public Criteria andAudioOminateNotEqualTo(Integer value) {
-            addCriterion("audio_ominate <>", value, "audioOminate");
+        public Criteria andAudioNominateNotEqualTo(Integer value) {
+            addCriterion("audio_nominate <>", value, "audioNominate");
             return (Criteria) this;
         }
 
-        public Criteria andAudioOminateGreaterThan(Integer value) {
-            addCriterion("audio_ominate >", value, "audioOminate");
+        public Criteria andAudioNominateGreaterThan(Integer value) {
+            addCriterion("audio_nominate >", value, "audioNominate");
             return (Criteria) this;
         }
 
-        public Criteria andAudioOminateGreaterThanOrEqualTo(Integer value) {
-            addCriterion("audio_ominate >=", value, "audioOminate");
+        public Criteria andAudioNominateGreaterThanOrEqualTo(Integer value) {
+            addCriterion("audio_nominate >=", value, "audioNominate");
             return (Criteria) this;
         }
 
-        public Criteria andAudioOminateLessThan(Integer value) {
-            addCriterion("audio_ominate <", value, "audioOminate");
+        public Criteria andAudioNominateLessThan(Integer value) {
+            addCriterion("audio_nominate <", value, "audioNominate");
             return (Criteria) this;
         }
 
-        public Criteria andAudioOminateLessThanOrEqualTo(Integer value) {
-            addCriterion("audio_ominate <=", value, "audioOminate");
+        public Criteria andAudioNominateLessThanOrEqualTo(Integer value) {
+            addCriterion("audio_nominate <=", value, "audioNominate");
             return (Criteria) this;
         }
 
-        public Criteria andAudioOminateIn(List<Integer> values) {
-            addCriterion("audio_ominate in", values, "audioOminate");
+        public Criteria andAudioNominateIn(List<Integer> values) {
+            addCriterion("audio_nominate in", values, "audioNominate");
             return (Criteria) this;
         }
 
-        public Criteria andAudioOminateNotIn(List<Integer> values) {
-            addCriterion("audio_ominate not in", values, "audioOminate");
+        public Criteria andAudioNominateNotIn(List<Integer> values) {
+            addCriterion("audio_nominate not in", values, "audioNominate");
             return (Criteria) this;
         }
 
-        public Criteria andAudioOminateBetween(Integer value1, Integer value2) {
-            addCriterion("audio_ominate between", value1, value2, "audioOminate");
+        public Criteria andAudioNominateBetween(Integer value1, Integer value2) {
+            addCriterion("audio_nominate between", value1, value2, "audioNominate");
             return (Criteria) this;
         }
 
-        public Criteria andAudioOminateNotBetween(Integer value1, Integer value2) {
-            addCriterion("audio_ominate not between", value1, value2, "audioOminate");
+        public Criteria andAudioNominateNotBetween(Integer value1, Integer value2) {
+            addCriterion("audio_nominate not between", value1, value2, "audioNominate");
             return (Criteria) this;
         }
 
@@ -612,6 +622,206 @@ public class AudioExample {
 
         public Criteria andAudioDateNotBetween(Date value1, Date value2) {
             addCriterion("audio_date not between", value1, value2, "audioDate");
+            return (Criteria) this;
+        }
+
+        public Criteria andAudioTextIsNull() {
+            addCriterion("audio_text is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andAudioTextIsNotNull() {
+            addCriterion("audio_text is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andAudioTextEqualTo(String value) {
+            addCriterion("audio_text =", value, "audioText");
+            return (Criteria) this;
+        }
+
+        public Criteria andAudioTextNotEqualTo(String value) {
+            addCriterion("audio_text <>", value, "audioText");
+            return (Criteria) this;
+        }
+
+        public Criteria andAudioTextGreaterThan(String value) {
+            addCriterion("audio_text >", value, "audioText");
+            return (Criteria) this;
+        }
+
+        public Criteria andAudioTextGreaterThanOrEqualTo(String value) {
+            addCriterion("audio_text >=", value, "audioText");
+            return (Criteria) this;
+        }
+
+        public Criteria andAudioTextLessThan(String value) {
+            addCriterion("audio_text <", value, "audioText");
+            return (Criteria) this;
+        }
+
+        public Criteria andAudioTextLessThanOrEqualTo(String value) {
+            addCriterion("audio_text <=", value, "audioText");
+            return (Criteria) this;
+        }
+
+        public Criteria andAudioTextLike(String value) {
+            addCriterion("audio_text like", value, "audioText");
+            return (Criteria) this;
+        }
+
+        public Criteria andAudioTextNotLike(String value) {
+            addCriterion("audio_text not like", value, "audioText");
+            return (Criteria) this;
+        }
+
+        public Criteria andAudioTextIn(List<String> values) {
+            addCriterion("audio_text in", values, "audioText");
+            return (Criteria) this;
+        }
+
+        public Criteria andAudioTextNotIn(List<String> values) {
+            addCriterion("audio_text not in", values, "audioText");
+            return (Criteria) this;
+        }
+
+        public Criteria andAudioTextBetween(String value1, String value2) {
+            addCriterion("audio_text between", value1, value2, "audioText");
+            return (Criteria) this;
+        }
+
+        public Criteria andAudioTextNotBetween(String value1, String value2) {
+            addCriterion("audio_text not between", value1, value2, "audioText");
+            return (Criteria) this;
+        }
+
+        public Criteria andAudioDescIsNull() {
+            addCriterion("audio_desc is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andAudioDescIsNotNull() {
+            addCriterion("audio_desc is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andAudioDescEqualTo(String value) {
+            addCriterion("audio_desc =", value, "audioDesc");
+            return (Criteria) this;
+        }
+
+        public Criteria andAudioDescNotEqualTo(String value) {
+            addCriterion("audio_desc <>", value, "audioDesc");
+            return (Criteria) this;
+        }
+
+        public Criteria andAudioDescGreaterThan(String value) {
+            addCriterion("audio_desc >", value, "audioDesc");
+            return (Criteria) this;
+        }
+
+        public Criteria andAudioDescGreaterThanOrEqualTo(String value) {
+            addCriterion("audio_desc >=", value, "audioDesc");
+            return (Criteria) this;
+        }
+
+        public Criteria andAudioDescLessThan(String value) {
+            addCriterion("audio_desc <", value, "audioDesc");
+            return (Criteria) this;
+        }
+
+        public Criteria andAudioDescLessThanOrEqualTo(String value) {
+            addCriterion("audio_desc <=", value, "audioDesc");
+            return (Criteria) this;
+        }
+
+        public Criteria andAudioDescLike(String value) {
+            addCriterion("audio_desc like", value, "audioDesc");
+            return (Criteria) this;
+        }
+
+        public Criteria andAudioDescNotLike(String value) {
+            addCriterion("audio_desc not like", value, "audioDesc");
+            return (Criteria) this;
+        }
+
+        public Criteria andAudioDescIn(List<String> values) {
+            addCriterion("audio_desc in", values, "audioDesc");
+            return (Criteria) this;
+        }
+
+        public Criteria andAudioDescNotIn(List<String> values) {
+            addCriterion("audio_desc not in", values, "audioDesc");
+            return (Criteria) this;
+        }
+
+        public Criteria andAudioDescBetween(String value1, String value2) {
+            addCriterion("audio_desc between", value1, value2, "audioDesc");
+            return (Criteria) this;
+        }
+
+        public Criteria andAudioDescNotBetween(String value1, String value2) {
+            addCriterion("audio_desc not between", value1, value2, "audioDesc");
+            return (Criteria) this;
+        }
+
+        public Criteria andAudioNumIsNull() {
+            addCriterion("audio_num is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andAudioNumIsNotNull() {
+            addCriterion("audio_num is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andAudioNumEqualTo(Integer value) {
+            addCriterion("audio_num =", value, "audioNum");
+            return (Criteria) this;
+        }
+
+        public Criteria andAudioNumNotEqualTo(Integer value) {
+            addCriterion("audio_num <>", value, "audioNum");
+            return (Criteria) this;
+        }
+
+        public Criteria andAudioNumGreaterThan(Integer value) {
+            addCriterion("audio_num >", value, "audioNum");
+            return (Criteria) this;
+        }
+
+        public Criteria andAudioNumGreaterThanOrEqualTo(Integer value) {
+            addCriterion("audio_num >=", value, "audioNum");
+            return (Criteria) this;
+        }
+
+        public Criteria andAudioNumLessThan(Integer value) {
+            addCriterion("audio_num <", value, "audioNum");
+            return (Criteria) this;
+        }
+
+        public Criteria andAudioNumLessThanOrEqualTo(Integer value) {
+            addCriterion("audio_num <=", value, "audioNum");
+            return (Criteria) this;
+        }
+
+        public Criteria andAudioNumIn(List<Integer> values) {
+            addCriterion("audio_num in", values, "audioNum");
+            return (Criteria) this;
+        }
+
+        public Criteria andAudioNumNotIn(List<Integer> values) {
+            addCriterion("audio_num not in", values, "audioNum");
+            return (Criteria) this;
+        }
+
+        public Criteria andAudioNumBetween(Integer value1, Integer value2) {
+            addCriterion("audio_num between", value1, value2, "audioNum");
+            return (Criteria) this;
+        }
+
+        public Criteria andAudioNumNotBetween(Integer value1, Integer value2) {
+            addCriterion("audio_num not between", value1, value2, "audioNum");
             return (Criteria) this;
         }
     }

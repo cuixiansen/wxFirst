@@ -1,10 +1,9 @@
 <!DOCTYPE html>
 <html>
-	<script src="../bootstrap-3.3.7/javascript/jQuery-1.12.4.js"></script>
-	<script type="text/javascript" src="../bootstrap-3.3.7/dist/js/bootstrap.min.js" ></script>
+<link rel="stylesheet" href="../static/bootstrap-3.3.7/css/bootstrap.min.css" />
 	
-	<link rel="stylesheet" href="../bootstrap-3.3.7/css/bootstrap.min.css" />
-	
+	<script src="../static/bootstrap-3.3.7/javascript/jQuery-1.12.4.js"></script>
+	<script type="text/javascript" src="../static/bootstrap-3.3.7/dist/js/bootstrap.min.js" ></script>
 	
 	
 	<head>
@@ -76,8 +75,8 @@
     </div>
     <div id="collapseTwo" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
       <div class="panel-body">
-      	<center><a class="btn btn-default btn-block" href="showAllAudio.html" target="myifream">全部音频</a></center>
-      	<center><a class="btn btn-default btn-block" href="sendAudio.html" target="myifream">音频上传</a></center>
+      	<center><a class="btn btn-default btn-block" href="/showAllVedio" target="myifream">全部视频</a></center>
+      	<center><a class="btn btn-default btn-block" href="/sendVedio" target="myifream">视频上传</a></center>
       	
         </div>
     </div>
@@ -86,17 +85,17 @@
     <div class="panel-heading" role="tab" id="headingThree">
       <h4 class="panel-title">
         <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseThree" aria-expanded="true" aria-controls="collapseThree">
-          目录管理
+          音频管理
         </a>
       </h4>
     </div>
     <div id="collapseThree" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingThree">
       <div class="panel-body" >
-      	<center><a class="btn btn-default btn-block"   href="newshowcatebypage.jsp"  target="myifream">显示目录</a></center>
-      	<center><a class="btn btn-default btn-block">增加目录</a></center>
-      	<center><a class="btn btn-default btn-block">修改目录</a></center>
-      	<center><a class="btn btn-default btn-block">删除目录</a></center>
-      	<center><a class="btn btn-default btn-block">查询目录</a></center>
+      	<center><a class="btn btn-default btn-block"   href="/audios/showAllAudio"  target="myifream">全部音频</a></center>
+      	<center><a class="btn btn-default btn-block"   href="/audios/sendAudio" target="myifream" >上传音频</a></center>
+<!--       	<center><a class="btn btn-default btn-block">修改目录</a></center> -->
+<!--       	<center><a class="btn btn-default btn-block">删除目录</a></center> -->
+<!--       	<center><a class="btn btn-default btn-block">查询目录</a></center> -->
         </div>
     </div>
     </div>
@@ -126,7 +125,7 @@
   <!--==================这是右边的主体部分=============-->
 		<div class="col-md-10" >
 		
-		<iframe id="myifream" frameborder="0" name="myifream"  width="100%" height="600px"> <!--src="right.jsp" -->
+		<iframe id="myifream" frameborder="0" name="myifream"  width="100%" height="600px"> 
 		
 		</iframe>
 		

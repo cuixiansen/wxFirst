@@ -1,8 +1,11 @@
 package com.example.demo.mapper;
 
+import com.example.demo.entity.Audio;
 import com.example.demo.entity.Vedio;
 import com.example.demo.entity.VedioExample;
 import java.util.List;
+import java.util.Map;
+
 import org.apache.ibatis.annotations.Param;
 
 public interface VedioMapper {
@@ -27,4 +30,10 @@ public interface VedioMapper {
     int updateByPrimaryKeySelective(Vedio record);
 
     int updateByPrimaryKey(Vedio record);
+    
+    List<Vedio> selectVedioByPage(Map map);
+    
+    List<Vedio> selectVedioByConditionByPage (Map map);
+    
+    List<Vedio> selectVedioByNominateByDesc (int nominate);
 }

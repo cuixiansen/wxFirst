@@ -4,12 +4,15 @@
   <resultMap id="BaseResultMap" type="com.example.demo.entity.Audio" >
     <id column="audio_id" property="audioId" jdbcType="INTEGER" />
     <result column="audio_title" property="audioTitle" jdbcType="VARCHAR" />
-    <result column="audio_price" property="audioPrice" jdbcType="INTEGER" />
-    <result column="audio_img_src" property="audioImgSrc" jdbcType="DOUBLE" />
+    <result column="audio_price" property="audioPrice" jdbcType="DOUBLE" />
+    <result column="audio_img_src" property="audioImgSrc" jdbcType="VARCHAR" />
     <result column="audio_author" property="audioAuthor" jdbcType="VARCHAR" />
     <result column="audio_src" property="audioSrc" jdbcType="VARCHAR" />
-    <result column="audio_ominate" property="audioOminate" jdbcType="INTEGER" />
+    <result column="audio_nominate" property="audioNominate" jdbcType="INTEGER" />
     <result column="audio_date" property="audioDate" jdbcType="TIMESTAMP" />
+    <result column="audio_text" property="audioText" jdbcType="VARCHAR" />
+    <result column="audio_desc" property="audioDesc" jdbcType="VARCHAR" />
+    <result column="audio_num" property="audioNum" jdbcType="INTEGER" />
   </resultMap>
   <sql id="Example_Where_Clause" >
     <where >
@@ -70,8 +73,8 @@
     </where>
   </sql>
   <sql id="Base_Column_List" >
-    audio_id, audio_title, audio_price, audio_img_src, audio_author, audio_src, audio_ominate, 
-    audio_date
+    audio_id, audio_title, audio_price, audio_img_src, audio_author, audio_src, audio_nominate, 
+    audio_date, audio_text, audio_desc, audio_num
   </sql>
   <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.example.demo.entity.AudioExample" >
     select
@@ -106,10 +109,12 @@
   <insert id="insert" parameterType="com.example.demo.entity.Audio" >
     insert into audio (audio_id, audio_title, audio_price, 
       audio_img_src, audio_author, audio_src, 
-      audio_ominate, audio_date)
-    values (#{audioId,jdbcType=INTEGER}, #{audioTitle,jdbcType=VARCHAR}, #{audioPrice,jdbcType=INTEGER}, 
-      #{audioImgSrc,jdbcType=DOUBLE}, #{audioAuthor,jdbcType=VARCHAR}, #{audioSrc,jdbcType=VARCHAR}, 
-      #{audioOminate,jdbcType=INTEGER}, #{audioDate,jdbcType=TIMESTAMP})
+      audio_nominate, audio_date, audio_text, 
+      audio_desc, audio_num)
+    values (#{audioId,jdbcType=INTEGER}, #{audioTitle,jdbcType=VARCHAR}, #{audioPrice,jdbcType=DOUBLE}, 
+      #{audioImgSrc,jdbcType=VARCHAR}, #{audioAuthor,jdbcType=VARCHAR}, #{audioSrc,jdbcType=VARCHAR}, 
+      #{audioNominate,jdbcType=INTEGER}, #{audioDate,jdbcType=TIMESTAMP}, #{audioText,jdbcType=VARCHAR}, 
+      #{audioDesc,jdbcType=VARCHAR}, #{audioNum,jdbcType=INTEGER})
   </insert>
   <insert id="insertSelective" parameterType="com.example.demo.entity.Audio" >
     insert into audio
@@ -132,11 +137,20 @@
       <if test="audioSrc != null" >
         audio_src,
       </if>
-      <if test="audioOminate != null" >
-        audio_ominate,
+      <if test="audioNominate != null" >
+        audio_nominate,
       </if>
       <if test="audioDate != null" >
         audio_date,
+      </if>
+      <if test="audioText != null" >
+        audio_text,
+      </if>
+      <if test="audioDesc != null" >
+        audio_desc,
+      </if>
+      <if test="audioNum != null" >
+        audio_num,
       </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides="," >
@@ -147,10 +161,10 @@
         #{audioTitle,jdbcType=VARCHAR},
       </if>
       <if test="audioPrice != null" >
-        #{audioPrice,jdbcType=INTEGER},
+        #{audioPrice,jdbcType=DOUBLE},
       </if>
       <if test="audioImgSrc != null" >
-        #{audioImgSrc,jdbcType=DOUBLE},
+        #{audioImgSrc,jdbcType=VARCHAR},
       </if>
       <if test="audioAuthor != null" >
         #{audioAuthor,jdbcType=VARCHAR},
@@ -158,11 +172,20 @@
       <if test="audioSrc != null" >
         #{audioSrc,jdbcType=VARCHAR},
       </if>
-      <if test="audioOminate != null" >
-        #{audioOminate,jdbcType=INTEGER},
+      <if test="audioNominate != null" >
+        #{audioNominate,jdbcType=INTEGER},
       </if>
       <if test="audioDate != null" >
         #{audioDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="audioText != null" >
+        #{audioText,jdbcType=VARCHAR},
+      </if>
+      <if test="audioDesc != null" >
+        #{audioDesc,jdbcType=VARCHAR},
+      </if>
+      <if test="audioNum != null" >
+        #{audioNum,jdbcType=INTEGER},
       </if>
     </trim>
   </insert>
@@ -182,10 +205,10 @@
         audio_title = #{record.audioTitle,jdbcType=VARCHAR},
       </if>
       <if test="record.audioPrice != null" >
-        audio_price = #{record.audioPrice,jdbcType=INTEGER},
+        audio_price = #{record.audioPrice,jdbcType=DOUBLE},
       </if>
       <if test="record.audioImgSrc != null" >
-        audio_img_src = #{record.audioImgSrc,jdbcType=DOUBLE},
+        audio_img_src = #{record.audioImgSrc,jdbcType=VARCHAR},
       </if>
       <if test="record.audioAuthor != null" >
         audio_author = #{record.audioAuthor,jdbcType=VARCHAR},
@@ -193,11 +216,20 @@
       <if test="record.audioSrc != null" >
         audio_src = #{record.audioSrc,jdbcType=VARCHAR},
       </if>
-      <if test="record.audioOminate != null" >
-        audio_ominate = #{record.audioOminate,jdbcType=INTEGER},
+      <if test="record.audioNominate != null" >
+        audio_nominate = #{record.audioNominate,jdbcType=INTEGER},
       </if>
       <if test="record.audioDate != null" >
         audio_date = #{record.audioDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.audioText != null" >
+        audio_text = #{record.audioText,jdbcType=VARCHAR},
+      </if>
+      <if test="record.audioDesc != null" >
+        audio_desc = #{record.audioDesc,jdbcType=VARCHAR},
+      </if>
+      <if test="record.audioNum != null" >
+        audio_num = #{record.audioNum,jdbcType=INTEGER},
       </if>
     </set>
     <if test="_parameter != null" >
@@ -208,12 +240,15 @@
     update audio
     set audio_id = #{record.audioId,jdbcType=INTEGER},
       audio_title = #{record.audioTitle,jdbcType=VARCHAR},
-      audio_price = #{record.audioPrice,jdbcType=INTEGER},
-      audio_img_src = #{record.audioImgSrc,jdbcType=DOUBLE},
+      audio_price = #{record.audioPrice,jdbcType=DOUBLE},
+      audio_img_src = #{record.audioImgSrc,jdbcType=VARCHAR},
       audio_author = #{record.audioAuthor,jdbcType=VARCHAR},
       audio_src = #{record.audioSrc,jdbcType=VARCHAR},
-      audio_ominate = #{record.audioOminate,jdbcType=INTEGER},
-      audio_date = #{record.audioDate,jdbcType=TIMESTAMP}
+      audio_nominate = #{record.audioNominate,jdbcType=INTEGER},
+      audio_date = #{record.audioDate,jdbcType=TIMESTAMP},
+      audio_text = #{record.audioText,jdbcType=VARCHAR},
+      audio_desc = #{record.audioDesc,jdbcType=VARCHAR},
+      audio_num = #{record.audioNum,jdbcType=INTEGER}
     <if test="_parameter != null" >
       <include refid="Update_By_Example_Where_Clause" />
     </if>
@@ -225,10 +260,10 @@
         audio_title = #{audioTitle,jdbcType=VARCHAR},
       </if>
       <if test="audioPrice != null" >
-        audio_price = #{audioPrice,jdbcType=INTEGER},
+        audio_price = #{audioPrice,jdbcType=DOUBLE},
       </if>
       <if test="audioImgSrc != null" >
-        audio_img_src = #{audioImgSrc,jdbcType=DOUBLE},
+        audio_img_src = #{audioImgSrc,jdbcType=VARCHAR},
       </if>
       <if test="audioAuthor != null" >
         audio_author = #{audioAuthor,jdbcType=VARCHAR},
@@ -236,11 +271,20 @@
       <if test="audioSrc != null" >
         audio_src = #{audioSrc,jdbcType=VARCHAR},
       </if>
-      <if test="audioOminate != null" >
-        audio_ominate = #{audioOminate,jdbcType=INTEGER},
+      <if test="audioNominate != null" >
+        audio_nominate = #{audioNominate,jdbcType=INTEGER},
       </if>
       <if test="audioDate != null" >
         audio_date = #{audioDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="audioText != null" >
+        audio_text = #{audioText,jdbcType=VARCHAR},
+      </if>
+      <if test="audioDesc != null" >
+        audio_desc = #{audioDesc,jdbcType=VARCHAR},
+      </if>
+      <if test="audioNum != null" >
+        audio_num = #{audioNum,jdbcType=INTEGER},
       </if>
     </set>
     where audio_id = #{audioId,jdbcType=INTEGER}
@@ -248,12 +292,41 @@
   <update id="updateByPrimaryKey" parameterType="com.example.demo.entity.Audio" >
     update audio
     set audio_title = #{audioTitle,jdbcType=VARCHAR},
-      audio_price = #{audioPrice,jdbcType=INTEGER},
-      audio_img_src = #{audioImgSrc,jdbcType=DOUBLE},
+      audio_price = #{audioPrice,jdbcType=DOUBLE},
+      audio_img_src = #{audioImgSrc,jdbcType=VARCHAR},
       audio_author = #{audioAuthor,jdbcType=VARCHAR},
       audio_src = #{audioSrc,jdbcType=VARCHAR},
-      audio_ominate = #{audioOminate,jdbcType=INTEGER},
-      audio_date = #{audioDate,jdbcType=TIMESTAMP}
+      audio_nominate = #{audioNominate,jdbcType=INTEGER},
+      audio_date = #{audioDate,jdbcType=TIMESTAMP},
+      audio_text = #{audioText,jdbcType=VARCHAR},
+      audio_desc = #{audioDesc,jdbcType=VARCHAR},
+      audio_num = #{audioNum,jdbcType=INTEGER}
     where audio_id = #{audioId,jdbcType=INTEGER}
   </update>
+   <!-- 自己写的 -->
+   <select id="selectAudioByPage" parameterType="map"  resultMap="BaseResultMap" >
+ SELECT *  from audio  limit #{startindex},#{pagesize}
+ </select>
+ 
+ <select id="selectAudioByConditionByPage" parameterType="map"  resultMap="BaseResultMap" >
+ SELECT *  FROM audio 
+ <where>
+ 
+ <if test="audio.audioTitle !=null and audio.audioTitle !=''">
+ and  audio_title  like "%"#{audio.audioTitle}"%"
+ </if>
+ <if test="audio.audioAuthor !=null and audio.audioAuthor !=''">
+ and audio_author like "%"#{audio.audioAuthor}"%"
+ </if>
+ <if test="date !=null and date !=''">
+ and audio_date like "%"#{date}"%"
+ </if>
+ 
+ </where>
+ limit #{startindex},#{pagesize}
+ </select>
+ 
+ <select id="selectAudioByNominateByDesc" parameterType="int"  resultMap="BaseResultMap"  >
+ select * from audio where audio_nominate=#{nominate} order by audio_id desc limit 3
+ </select>
 </mapper>

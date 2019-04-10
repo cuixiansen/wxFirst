@@ -8,6 +8,7 @@ spring:
     store-type: none  #如果要使用redis的话就用redis     
   thymeleaf:
     prefix: classpath:/templates/   #设置访问的html
+    suffix: .html
   resources:
     static-locations:
     - classpath:/
@@ -25,7 +26,8 @@ spring:
         max-idle: 30
         max-wait: 10000
       
-    
+  mvc:
+    static-path-pattern: /**
 # mvc 只针对 jsp页面     
 #  mvc:
 #    view:

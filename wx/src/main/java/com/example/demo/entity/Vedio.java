@@ -2,6 +2,10 @@ package com.example.demo.entity;
 
 import java.util.Date;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 public class Vedio {
     private Integer vedioId;
 
@@ -16,8 +20,15 @@ public class Vedio {
     private String vedioSrc;
 
     private Integer vedioNominate;
-
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
+    @JsonFormat(timezone = "GMT+8", pattern = "yyyy-MM-dd")
     private Date vedioDate;
+
+    private String vedioText;
+
+    private String vedioDesc;
+
+    private Integer vedioNum;
 
     public Integer getVedioId() {
         return vedioId;
@@ -83,16 +94,53 @@ public class Vedio {
         this.vedioDate = vedioDate;
     }
 
-	public Vedio(String vedioTitle, Double vedioPrice, String vedioImgSrc, String vedioAuthor, String vedioSrc,
-			Integer vedioNominate, Date vedioDate) {
+    public String getVedioText() {
+        return vedioText;
+    }
+
+    public void setVedioText(String vedioText) {
+        this.vedioText = vedioText == null ? null : vedioText.trim();
+    }
+
+    public String getVedioDesc() {
+        return vedioDesc;
+    }
+
+    public void setVedioDesc(String vedioDesc) {
+        this.vedioDesc = vedioDesc == null ? null : vedioDesc.trim();
+    }
+
+    public Integer getVedioNum() {
+        return vedioNum;
+    }
+
+    public void setVedioNum(Integer vedioNum) {
+        this.vedioNum = vedioNum;
+    }
+
+	public Vedio() {
+		super();
+	}
+
+	public Vedio(String vedioTitle, Double vedioPrice, String vedioAuthor, Integer vedioNominate, Date vedioDate,
+			String vedioText, String vedioDesc, Integer vedioNum) {
 		super();
 		this.vedioTitle = vedioTitle;
 		this.vedioPrice = vedioPrice;
-		this.vedioImgSrc = vedioImgSrc;
 		this.vedioAuthor = vedioAuthor;
-		this.vedioSrc = vedioSrc;
 		this.vedioNominate = vedioNominate;
 		this.vedioDate = vedioDate;
+		this.vedioText = vedioText;
+		this.vedioDesc = vedioDesc;
+		this.vedioNum = vedioNum;
+	}
+
+	@Override
+	public String toString() {
+		return "Vedio [vedioId=" + vedioId + ", vedioTitle=" + vedioTitle + ", vedioPrice=" + vedioPrice
+				+ ", vedioImgSrc=" + vedioImgSrc + ", vedioAuthor=" + vedioAuthor + ", vedioSrc=" + vedioSrc
+				+ ", vedioNominate=" + vedioNominate + ", vedioDate=" + vedioDate + ", vedioText=" + vedioText
+				+ ", vedioDesc=" + vedioDesc + ", vedioNum=" + vedioNum + "]";
 	}
     
 }
