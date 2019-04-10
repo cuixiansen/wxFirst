@@ -1,0 +1,404 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<link rel="stylesheet" href="../static/bootstrap-3.3.7/css/bootstrap.min.css" />
+
+<script src="../../static/bootstrap-3.3.7/javascript/jQuery-1.12.4.js"></script>
+	<script type="text/javascript" src="../../static/bootstrap-3.3.7/dist/js/bootstrap.min.js" ></script>
+	<script src="../../static/js/sendVedio.js"></script>
+	
+	<script src="../../static/bootstrap-3.3.7/javascript/table/bootstrap-table.js"></script>
+<link href="../../static/bootstrap-3.3.7/javascript/table/bootstrap-table.css" rel="stylesheet" />
+<script src="../../static/bootstrap-3.3.7/javascript/table/locale/bootstrap-table-zh-CN.js"></script>
+	
+<script type="text/javascript" src="../static/bootstrap-3.3.7/javascript/My97DatePicker/WdatePicker.js">
+</script>
+
+</head>
+<body>
+
+ <div class="navbar-form navbar-left" role="search">
+      
+      <input id="title2"  name="acaname" type="text" class="form-control" placeholder="请输入要搜索的标题"/>
+      
+    &nbsp;&nbsp;
+		<input id="author2"  name="acaname" type="text" class="form-control" placeholder="请输入要搜索的作者"/>
+      
+    &nbsp;&nbsp;
+        发布时间 <input id="date2"  name="op_time" type="text" class="Wdate" onfocus="WdatePicker({dateFmt:'yyyy-MM-dd'})" placeholder="操作开始时间"/>
+	&nbsp;&nbsp;		
+		
+		<input type="button" class="btn btn-primary" value="搜索产品" onclick="searchVedio()" />
+      
+      </div>
+
+<!--                       主表                                                                  -->
+<table id="mytable"></table>
+
+<!--                       修改vedio框                                                 -->
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="myModalLabel">修改界面</h4>
+      </div>
+      <div class="modal-body">
+       <form id="myform">
+       		<table class="table table-hover table-condensed "    >
+       		<tr >
+<td style="text-align: left; width: 20%;padding-left: 30px;">编号</td><td  ><input type="text" style="text-align: left;" name="title"  id="id1" readonly /></td>
+</tr>
+<tr >
+<td style="text-align: left; width: 20%;padding-left: 30px;">标题</td><td  ><input type="text" style="text-align: left;" name="title"  id="title1" /></td>
+</tr>
+<tr>
+<td style="text-align: left; width: 20%;padding-left: 30px;">作者</td><td><input type="text" name="catename"  id="author1"  placeholder="可选填" /></td>
+</tr>
+<tr>
+<td style="text-align: left; width: 20%;padding-left: 30px;">音频</td><td><input type="file"  id="audio1" placeholder="音频文件" /></td>
+</tr>
+<tr>
+<td style="text-align: left; width: 20%;padding-left: 30px;">图片</td><td><image id="showImg"   style="width:50px;height:50px" ></image><input type="file"  id="audioImg1"   placeholder="音频文件" /></td>
+</tr>
+<tr>
+<td style="text-align: left; width: 20%;padding-left: 30px;">价格</td><td><input type="text" name="catename"  id="price1"  placeholder="可选填" /></td>
+</tr>
+<tr>
+<td style="text-align: left; width: 20%;padding-left: 30px;">描述</td><td><input type="text" name="ctbeizhu" id="desc1" /></td>
+</tr>
+<tr>
+<td style="text-align: left; width: 20%">是否推荐</td><td> <select id="nominate1"><option value="1">是</option><option value="0">否</option></select></td>
+</tr>
+<tr>
+<td style="text-align: left; width: 20%">文稿</td><td> <textarea id="text1" style="height:150px;width:200px;" maxlength="255" placeholder="内容简介(最大字数255)"></textarea></td>
+</tr>
+<!-- <tr>
+<td style="text-align: left; width: 20%">上传时间</td><td> <input type="text" name="catename"  id="date1"   /></td>
+</tr> -->
+
+</table>
+<!-- <table class="table table-hover table-condensed"  > -->
+<!-- <tr> -->
+<!-- <td>视频编号</td><td><input name="puid"  type="text" id="id" readonly/></td> -->
+<!-- </tr> -->
+<!-- <tr> -->
+<!-- <td>视频标题</td><td><input type="text" name="puname" id="title1"  /> </td> -->
+<!-- </tr> -->
+<!-- <tr> -->
+<!--    <td>是否推荐</td><td><select name="pename" id="nominate"> -->
+<!-- 	<option value="1">是</option> -->
+<!-- 	<option value="0">否</option> -->
+<!--    </select></td> -->
+<!-- </tr> -->
+<!-- <tr> -->
+<!-- <td>视频</td><td><input type="text" name="count"    /></td> -->
+<!-- </tr> -->
+<!-- <tr> -->
+<!-- <td>产品进价</td><td><input type="text" name="inp"   /></td> -->
+<!-- </tr> -->
+<!-- <tr> -->
+<!-- <td>产品售价</td><td><input type="text" name="outp"     /></td> -->
+<!-- </tr> -->
+<!-- <tr> -->
+<!-- <td>种类</td><td><select id="kind" name="kind" ></select></td> -->
+<!-- </tr> -->
+
+<!-- </table> -->
+</form>
+        
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary" onclick="updateVedio()">Save changes</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+</body>
+<script type="text/javascript">
+$("#mytable").bootstrapTable({
+	url : '/audios/showAudioByPage',
+	method : 'get',	
+     striped: true,                      //是否显示行间隔色
+     cache: false,                       //是否使用缓存，默认为true，所以一般情况下需要设置一下这个属性（*）
+     pagination: true,                   //是否显示分页（*）
+     sortable: false,                     //是否启用排序
+     sortOrder: "asc",                   //排序方式
+    // queryParams: oTableInit.queryParams,//传递参数（*）
+     sidePagination: "server",           //分页方式：client客户端分页，server服务端分页（*）
+     pageNumber:1,                       //初始化加载第一页，默认第一页
+     pageSize: 5,                       //每页的记录行数（*）
+     pageList: [5,10, 25, 50, 100],        //可供选择的每页的行数（*）
+     
+     showColumns: true,                  //是否显示所有的列
+     showRefresh: true,                  //是否显示刷新按钮
+     minimumCountColumns: 2,             //最少允许的列数
+     clickToSelect: true,                //是否启用点击选中行
+   
+     columns: [ {
+         field: 'audioId',
+         title: '音频编号'
+     },{
+         field: 'audioTitle',
+         title: '音频标题'
+     }, {
+         field: 'audioAuthor',
+         title: '音频作者'
+     }, /* {
+         field: 'vedioSrc',
+         title: '视频链接'
+     },{
+         field: 'vedioImgSrc',
+         title: '视频图片链接'
+     },*/{
+         field: 'audioPrice',
+         title: '音频价格'
+     },{
+         field: 'audioNominate',
+         title: '音频推荐'
+     },{
+         field: 'audioNum',
+         title: '观看人数'
+     },{
+         field: 'audioText',
+         title: '音频文稿'
+     },{
+         field: 'audioDesc',
+         title: '音频描述'
+     },{
+         field: 'audioDate',
+         title: '音频时间'
+     },{
+         field: 'audioId',
+         formatter: autoadd,
+         title: '操作'
+         
+     }]
+     
+ });
+ //操作的写法
+ function autoadd(value, row ,index){
+	 return "<a type='button' class='btn btn-info btn-sm' onclick=del('"+value+"')>删除<span class='glyphicon glyphicon-remove  aria-hidden='true'></span></a>&nbsp;&nbsp;&nbsp;&nbsp;"+
+	 "<a type='button' class='btn btn-info btn-sm' data-toggle='modal' data-target='#myModal' onclick=modify('"+value+"')>修改<span class='glyphicon glyphicon-wrench ' aria-hidden='true'></span></a>"
+ }
+ //删除方法
+ function del(id){
+	 if(confirm("确定删除?")){
+	 $.ajax({
+	     url:"/audios/deleteAudioById",
+	     type:"post",
+	     data:"id="+id+"" ,
+	    success:function(msg){
+	 	 if("ok"==msg){
+	 		 alert("删除成功")
+             $("#mytable").bootstrapTable("refresh")
+		 	} 
+	      }
+	    });   
+	 }
+ }
+ 
+ //修改方法
+ function modify(id){
+/* 	 $("#title").val()); 
+	    formFile.append("vedioAuthor",$("#author").val() );
+	    formFile.append("vedioPrice",$("#price").val()); 
+	    formFile.append("VedioNominate",$("#nominate").val());
+	    formFile.append("VedioText",$("#text").val()); 
+	    formFile.append("VedioDesc",$("#desc").val()); */
+	 
+/* 	 get("csname").innerHTML="";
+	get("pu_inprice").innerHTML="";
+	 get("pu_outprice").innerHTML="";
+	 get("pu_num").innerHTML="";
+	 get("pu_date").innerHTML=""; */
+	 $.ajax({
+	     url:"/audios/showAudioById",
+	     type:"post",
+	     data:{
+	    	    "id":id
+	    	 
+
+	     },
+	    success:function(a){
+	     var  head="http://localhost:8080"
+	     var imgsrc=a.vedioImgSrc;
+	     var path=head+imgsrc;
+	    console.log(path);
+	 	 //var a=JSON.parse(msg)
+	 	 $("#title1").val(a.audioTitle)
+	 	  $("#id1").val(a.audioId)
+	 	   $("#desc1").val(a.audioDesc)
+	 	    $("#showImg").attr('src',a.audioImgSrc); 
+	 	     $("#author1").val(a.audioAuthor)
+	 	      $("#price1").val(a.audioPrice)
+	 	      $("#nominate1").val(a.audioNominate)
+	 	      $("#text1").val(a.audioText)
+	 	     /*  var ops=$("#provider")[0].options
+	 	      for(var i=0;i<ops.length;i++){
+	 	      if(ops[i].value==a.p.peID){
+	 	    	 ops[i].selected="selected" 
+	 	      }
+	 	      }
+	    	 var cops=$("#kind")[0].options
+	 	      for(var i=0;i<cops.length;i++){
+	 	      if(cops[i].value==a.c.cgID){
+	 	    	 cops[i].selected="selected" 
+	 	      }
+	 	      } */
+
+	    }
+	 });   
+ 
+ 
+ }
+ 
+ //传图片的时候change事件
+ $(function () {
+	    $("#audioImg1").change(function () {
+	        var $file = $(this);
+	        var fileObj = $file[0];
+	        var windowURL = window.URL || window.webkitURL;
+	        var dataURL;
+	        var $img = $("#showImg");
+
+	        if (fileObj && fileObj.files && fileObj.files[0]) {
+	            dataURL = windowURL.createObjectURL(fileObj.files[0]);
+	            $img.attr('src', dataURL);
+	        } else {
+	            dataURL = $file.val();
+	            var imgObj = document.getElementById("showImg");
+	            // 两个坑:
+	            // 1、在设置filter属性时，元素必须已经存在在DOM树中，动态创建的Node，也需要在设置属性前加入到DOM中，先设置属性在加入，无效；
+	            // 2、src属性需要像下面的方式添加，上面的两种方式添加，无效；
+	            imgObj.style.filter = "progid:DXImageTransform.Microsoft.AlphaImageLoader(sizingMethod=scale)";
+	            imgObj.filters.item("DXImageTransform.Microsoft.AlphaImageLoader").src = dataURL;
+
+	        }
+	    });
+	});
+
+ //修改audio方法
+ function updateVedio(){
+	 var fileObj = document.getElementById("audio1").files[0]; // js 获取文件对象
+		var fileObj2 = document.getElementById("audioImg1").files[0];
+ var formFile = new FormData();
+ console.log(fileObj);
+ formFile.append("audioFile", fileObj); 
+ formFile.append("audioImg", fileObj2);
+ formFile.append("audioTitle",$("#title1").val()); 
+ formFile.append("audioAuthor",$("#author1").val() );
+ formFile.append("audioPrice",$("#price1").val()); 
+ formFile.append("audioNominate",$("#nominate1").val());
+ formFile.append("audioText",$("#text1").val()); 
+ formFile.append("audioDesc",$("#desc1").val());
+ formFile.append("audioNum",0);
+ formFile.append("audioId",$("#id1").val());
+ var data=formFile;
+	$.ajax({ url: "/audios/updateAudio", 
+		     //dataType: 'json',
+		   //context: document.body,
+		     processData:false,
+		     contentType:false,
+		     type:"post",
+	         data:data,
+		   success: function(msg){
+	           if(msg=="ok"){
+	        	   alert("注册成功")
+	        	  // window.location.href ="../index.html"
+	           }else{
+	        	   alert("注册失败")  
+	           }
+	      }});
+	 
+ }
+ 
+//post方法获得参数
+ function queryParams(params) {  //bootstrapTable自带参数  
+		    var temp = {   //这里的键的名字和控制器的变量名必须一直，这边改动，控制器也需要改成一样的  
+		    		
+		    		"date":$("#date2").val(),
+		    		"cpage" : this.pageNumber,
+		    		"limit" : this.pageSize,
+		    		"audioAuthor":$("#author2").val(),
+		    		"audioTitle":$("#title2").val()
+		    		
+		    };  
+		    return temp;  
+		 }
+		 
+ //模糊查询----------------
+ function searchVedio(){
+	
+	 $("#mytable").bootstrapTable('destroy')
+	$("#mytable").bootstrapTable({
+			url : "/audios/selectAudioByConditionByPage" ,
+			method : 'post',
+			contentType:'application/x-www-form-urlencoded; charset=UTF-8',		
+		     striped: true,                      //是否显示行间隔色
+		     cache: false,                       //是否使用缓存，默认为true，所以一般情况下需要设置一下这个属性（*）
+		     pagination: true,                   //是否显示分页（*）
+		     sortable: false,                     //是否启用排序
+		     sortOrder: "asc",                   //排序方式
+		    queryParams:queryParams,//传递参数（*）
+		     sidePagination: "server",           //分页方式：client客户端分页，server服务端分页（*）
+		     pageNumber:1,                       //初始化加载第一页，默认第一页
+		     pageSize: 5,                       //每页的记录行数（*）
+		     pageList: [5,10, 25, 50, 100],        //可供选择的每页的行数（*）
+		     
+		     showColumns: true,                  //是否显示所有的列
+		     showRefresh: true,                  //是否显示刷新按钮
+		     minimumCountColumns: 2,             //最少允许的列数
+		     clickToSelect: true,                //是否启用点击选中行
+		     columns: [ {
+		         field: 'audioId',
+		         title: '音频编号'
+		     },{
+		         field: 'audioTitle',
+		         title: '音频标题'
+		     }, {
+		         field: 'audioAuthor',
+		         title: '音频作者'
+		     }, /* {
+		         field: 'vedioSrc',
+		         title: '视频链接'
+		     },{
+		         field: 'vedioImgSrc',
+		         title: '视频图片链接'
+		     },*/{
+		         field: 'audioPrice',
+		         title: '音频价格'
+		     },{
+		         field: 'audioNominate',
+		         title: '音频推荐'
+		     },{
+		         field: 'audioNum',
+		         title: '观看人数'
+		     },{
+		         field: 'audioText',
+		         title: '音频文稿'
+		     },{
+		         field: 'audioDesc',
+		         title: '音频描述'
+		     },{
+		         field: 'audioDate',
+		         title: '音频时间'
+		     },{
+		         field: 'audioId',
+		         formatter: autoadd,
+		         title: '操作'
+		         
+		     }]
+		     
+		     
+ })
+ }
+ 
+</script>
+
+
+</html>

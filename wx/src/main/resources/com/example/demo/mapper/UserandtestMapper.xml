@@ -1,0 +1,263 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.example.demo.mapper.UserandtestMapper" >
+  <resultMap id="BaseResultMap" type="com.example.demo.entity.Userandtest" >
+    <id column="user_test_id" property="userTestId" jdbcType="INTEGER" />
+    <result column="user_id" property="userId" jdbcType="INTEGER" />
+    <result column="test_id" property="testId" jdbcType="INTEGER" />
+    <result column="if_pay" property="ifPay" jdbcType="INTEGER" />
+    <result column="if_complete" property="ifComplete" jdbcType="INTEGER" />
+    <result column="result_prefic" property="resultPrefic" jdbcType="VARCHAR" />
+    <result column="result_text" property="resultText" jdbcType="VARCHAR" />
+    <result column="result_grade" property="resultGrade" jdbcType="DOUBLE" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    user_test_id, user_id, test_id, if_pay, if_complete, result_prefic, result_text, 
+    result_grade
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.example.demo.entity.UserandtestExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from userandtest
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from userandtest
+    where user_test_id = #{userTestId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from userandtest
+    where user_test_id = #{userTestId,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.example.demo.entity.UserandtestExample" >
+    delete from userandtest
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.example.demo.entity.Userandtest" >
+    insert into userandtest (user_test_id, user_id, test_id, 
+      if_pay, if_complete, result_prefic, 
+      result_text, result_grade)
+    values (#{userTestId,jdbcType=INTEGER}, #{userId,jdbcType=INTEGER}, #{testId,jdbcType=INTEGER}, 
+      #{ifPay,jdbcType=INTEGER}, #{ifComplete,jdbcType=INTEGER}, #{resultPrefic,jdbcType=VARCHAR}, 
+      #{resultText,jdbcType=VARCHAR}, #{resultGrade,jdbcType=DOUBLE})
+  </insert>
+  <insert id="insertSelective" parameterType="com.example.demo.entity.Userandtest" >
+    insert into userandtest
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="userTestId != null" >
+        user_test_id,
+      </if>
+      <if test="userId != null" >
+        user_id,
+      </if>
+      <if test="testId != null" >
+        test_id,
+      </if>
+      <if test="ifPay != null" >
+        if_pay,
+      </if>
+      <if test="ifComplete != null" >
+        if_complete,
+      </if>
+      <if test="resultPrefic != null" >
+        result_prefic,
+      </if>
+      <if test="resultText != null" >
+        result_text,
+      </if>
+      <if test="resultGrade != null" >
+        result_grade,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="userTestId != null" >
+        #{userTestId,jdbcType=INTEGER},
+      </if>
+      <if test="userId != null" >
+        #{userId,jdbcType=INTEGER},
+      </if>
+      <if test="testId != null" >
+        #{testId,jdbcType=INTEGER},
+      </if>
+      <if test="ifPay != null" >
+        #{ifPay,jdbcType=INTEGER},
+      </if>
+      <if test="ifComplete != null" >
+        #{ifComplete,jdbcType=INTEGER},
+      </if>
+      <if test="resultPrefic != null" >
+        #{resultPrefic,jdbcType=VARCHAR},
+      </if>
+      <if test="resultText != null" >
+        #{resultText,jdbcType=VARCHAR},
+      </if>
+      <if test="resultGrade != null" >
+        #{resultGrade,jdbcType=DOUBLE},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.example.demo.entity.UserandtestExample" resultType="java.lang.Integer" >
+    select count(*) from userandtest
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update userandtest
+    <set >
+      <if test="record.userTestId != null" >
+        user_test_id = #{record.userTestId,jdbcType=INTEGER},
+      </if>
+      <if test="record.userId != null" >
+        user_id = #{record.userId,jdbcType=INTEGER},
+      </if>
+      <if test="record.testId != null" >
+        test_id = #{record.testId,jdbcType=INTEGER},
+      </if>
+      <if test="record.ifPay != null" >
+        if_pay = #{record.ifPay,jdbcType=INTEGER},
+      </if>
+      <if test="record.ifComplete != null" >
+        if_complete = #{record.ifComplete,jdbcType=INTEGER},
+      </if>
+      <if test="record.resultPrefic != null" >
+        result_prefic = #{record.resultPrefic,jdbcType=VARCHAR},
+      </if>
+      <if test="record.resultText != null" >
+        result_text = #{record.resultText,jdbcType=VARCHAR},
+      </if>
+      <if test="record.resultGrade != null" >
+        result_grade = #{record.resultGrade,jdbcType=DOUBLE},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update userandtest
+    set user_test_id = #{record.userTestId,jdbcType=INTEGER},
+      user_id = #{record.userId,jdbcType=INTEGER},
+      test_id = #{record.testId,jdbcType=INTEGER},
+      if_pay = #{record.ifPay,jdbcType=INTEGER},
+      if_complete = #{record.ifComplete,jdbcType=INTEGER},
+      result_prefic = #{record.resultPrefic,jdbcType=VARCHAR},
+      result_text = #{record.resultText,jdbcType=VARCHAR},
+      result_grade = #{record.resultGrade,jdbcType=DOUBLE}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.example.demo.entity.Userandtest" >
+    update userandtest
+    <set >
+      <if test="userId != null" >
+        user_id = #{userId,jdbcType=INTEGER},
+      </if>
+      <if test="testId != null" >
+        test_id = #{testId,jdbcType=INTEGER},
+      </if>
+      <if test="ifPay != null" >
+        if_pay = #{ifPay,jdbcType=INTEGER},
+      </if>
+      <if test="ifComplete != null" >
+        if_complete = #{ifComplete,jdbcType=INTEGER},
+      </if>
+      <if test="resultPrefic != null" >
+        result_prefic = #{resultPrefic,jdbcType=VARCHAR},
+      </if>
+      <if test="resultText != null" >
+        result_text = #{resultText,jdbcType=VARCHAR},
+      </if>
+      <if test="resultGrade != null" >
+        result_grade = #{resultGrade,jdbcType=DOUBLE},
+      </if>
+    </set>
+    where user_test_id = #{userTestId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.example.demo.entity.Userandtest" >
+    update userandtest
+    set user_id = #{userId,jdbcType=INTEGER},
+      test_id = #{testId,jdbcType=INTEGER},
+      if_pay = #{ifPay,jdbcType=INTEGER},
+      if_complete = #{ifComplete,jdbcType=INTEGER},
+      result_prefic = #{resultPrefic,jdbcType=VARCHAR},
+      result_text = #{resultText,jdbcType=VARCHAR},
+      result_grade = #{resultGrade,jdbcType=DOUBLE}
+    where user_test_id = #{userTestId,jdbcType=INTEGER}
+  </update>
+  
+  <select id="selectgrade" parameterType="com.example.demo.entity.Userandtest" resultType="DOUBLE">
+  select result_grade from userandtest where test_id=#{testId} and  user_id=#{userId}</select>
+  
+</mapper>

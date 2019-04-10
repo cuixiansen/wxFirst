@@ -1,0 +1,316 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.example.demo.mapper.TestdetailMapper" >
+  <resultMap id="BaseResultMap" type="com.example.demo.entity.Testdetail" >
+    <id column="test_d_id" property="testDId" jdbcType="INTEGER" />
+    <result column="test_id" property="testId" jdbcType="INTEGER" />
+    <result column="test_problem_id" property="testProblemId" jdbcType="INTEGER" />
+    <result column="test_problem_text" property="testProblemText" jdbcType="VARCHAR" />
+    <result column="test_problem_pid" property="testProblemPid" jdbcType="INTEGER" />
+    <result column="test_problem_p_prefix" property="testProblemPPrefix" jdbcType="VARCHAR" />
+    <result column="test_problem_ptext" property="testProblemPtext" jdbcType="VARCHAR" />
+    <result column="test_option_prefix" property="testOptionPrefix" jdbcType="VARCHAR" />
+    <result column="test_option_text" property="testOptionText" jdbcType="VARCHAR" />
+    <result column="test_option_value" property="testOptionValue" jdbcType="DOUBLE" />
+    <result column="test_skip_value" property="testSkipValue" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    test_d_id, test_id, test_problem_id, test_problem_text, test_problem_pid, test_problem_p_prefix, 
+    test_problem_ptext, test_option_prefix, test_option_text, test_option_value, test_skip_value
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.example.demo.entity.TestdetailExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from testdetail
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from testdetail
+    where test_d_id = #{testDId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from testdetail
+    where test_d_id = #{testDId,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.example.demo.entity.TestdetailExample" >
+    delete from testdetail
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.example.demo.entity.Testdetail" >
+    insert into testdetail (test_d_id, test_id, test_problem_id, 
+      test_problem_text, test_problem_pid, test_problem_p_prefix, 
+      test_problem_ptext, test_option_prefix, test_option_text, 
+      test_option_value, test_skip_value)
+    values (#{testDId,jdbcType=INTEGER}, #{testId,jdbcType=INTEGER}, #{testProblemId,jdbcType=INTEGER}, 
+      #{testProblemText,jdbcType=VARCHAR}, #{testProblemPid,jdbcType=INTEGER}, #{testProblemPPrefix,jdbcType=VARCHAR}, 
+      #{testProblemPtext,jdbcType=VARCHAR}, #{testOptionPrefix,jdbcType=VARCHAR}, #{testOptionText,jdbcType=VARCHAR}, 
+      #{testOptionValue,jdbcType=DOUBLE}, #{testSkipValue,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.example.demo.entity.Testdetail" >
+    insert into testdetail
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="testDId != null" >
+        test_d_id,
+      </if>
+      <if test="testId != null" >
+        test_id,
+      </if>
+      <if test="testProblemId != null" >
+        test_problem_id,
+      </if>
+      <if test="testProblemText != null" >
+        test_problem_text,
+      </if>
+      <if test="testProblemPid != null" >
+        test_problem_pid,
+      </if>
+      <if test="testProblemPPrefix != null" >
+        test_problem_p_prefix,
+      </if>
+      <if test="testProblemPtext != null" >
+        test_problem_ptext,
+      </if>
+      <if test="testOptionPrefix != null" >
+        test_option_prefix,
+      </if>
+      <if test="testOptionText != null" >
+        test_option_text,
+      </if>
+      <if test="testOptionValue != null" >
+        test_option_value,
+      </if>
+      <if test="testSkipValue != null" >
+        test_skip_value,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="testDId != null" >
+        #{testDId,jdbcType=INTEGER},
+      </if>
+      <if test="testId != null" >
+        #{testId,jdbcType=INTEGER},
+      </if>
+      <if test="testProblemId != null" >
+        #{testProblemId,jdbcType=INTEGER},
+      </if>
+      <if test="testProblemText != null" >
+        #{testProblemText,jdbcType=VARCHAR},
+      </if>
+      <if test="testProblemPid != null" >
+        #{testProblemPid,jdbcType=INTEGER},
+      </if>
+      <if test="testProblemPPrefix != null" >
+        #{testProblemPPrefix,jdbcType=VARCHAR},
+      </if>
+      <if test="testProblemPtext != null" >
+        #{testProblemPtext,jdbcType=VARCHAR},
+      </if>
+      <if test="testOptionPrefix != null" >
+        #{testOptionPrefix,jdbcType=VARCHAR},
+      </if>
+      <if test="testOptionText != null" >
+        #{testOptionText,jdbcType=VARCHAR},
+      </if>
+      <if test="testOptionValue != null" >
+        #{testOptionValue,jdbcType=DOUBLE},
+      </if>
+      <if test="testSkipValue != null" >
+        #{testSkipValue,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.example.demo.entity.TestdetailExample" resultType="java.lang.Integer" >
+    select count(*) from testdetail
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update testdetail
+    <set >
+      <if test="record.testDId != null" >
+        test_d_id = #{record.testDId,jdbcType=INTEGER},
+      </if>
+      <if test="record.testId != null" >
+        test_id = #{record.testId,jdbcType=INTEGER},
+      </if>
+      <if test="record.testProblemId != null" >
+        test_problem_id = #{record.testProblemId,jdbcType=INTEGER},
+      </if>
+      <if test="record.testProblemText != null" >
+        test_problem_text = #{record.testProblemText,jdbcType=VARCHAR},
+      </if>
+      <if test="record.testProblemPid != null" >
+        test_problem_pid = #{record.testProblemPid,jdbcType=INTEGER},
+      </if>
+      <if test="record.testProblemPPrefix != null" >
+        test_problem_p_prefix = #{record.testProblemPPrefix,jdbcType=VARCHAR},
+      </if>
+      <if test="record.testProblemPtext != null" >
+        test_problem_ptext = #{record.testProblemPtext,jdbcType=VARCHAR},
+      </if>
+      <if test="record.testOptionPrefix != null" >
+        test_option_prefix = #{record.testOptionPrefix,jdbcType=VARCHAR},
+      </if>
+      <if test="record.testOptionText != null" >
+        test_option_text = #{record.testOptionText,jdbcType=VARCHAR},
+      </if>
+      <if test="record.testOptionValue != null" >
+        test_option_value = #{record.testOptionValue,jdbcType=DOUBLE},
+      </if>
+      <if test="record.testSkipValue != null" >
+        test_skip_value = #{record.testSkipValue,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update testdetail
+    set test_d_id = #{record.testDId,jdbcType=INTEGER},
+      test_id = #{record.testId,jdbcType=INTEGER},
+      test_problem_id = #{record.testProblemId,jdbcType=INTEGER},
+      test_problem_text = #{record.testProblemText,jdbcType=VARCHAR},
+      test_problem_pid = #{record.testProblemPid,jdbcType=INTEGER},
+      test_problem_p_prefix = #{record.testProblemPPrefix,jdbcType=VARCHAR},
+      test_problem_ptext = #{record.testProblemPtext,jdbcType=VARCHAR},
+      test_option_prefix = #{record.testOptionPrefix,jdbcType=VARCHAR},
+      test_option_text = #{record.testOptionText,jdbcType=VARCHAR},
+      test_option_value = #{record.testOptionValue,jdbcType=DOUBLE},
+      test_skip_value = #{record.testSkipValue,jdbcType=VARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.example.demo.entity.Testdetail" >
+    update testdetail
+    <set >
+      <if test="testId != null" >
+        test_id = #{testId,jdbcType=INTEGER},
+      </if>
+      <if test="testProblemId != null" >
+        test_problem_id = #{testProblemId,jdbcType=INTEGER},
+      </if>
+      <if test="testProblemText != null" >
+        test_problem_text = #{testProblemText,jdbcType=VARCHAR},
+      </if>
+      <if test="testProblemPid != null" >
+        test_problem_pid = #{testProblemPid,jdbcType=INTEGER},
+      </if>
+      <if test="testProblemPPrefix != null" >
+        test_problem_p_prefix = #{testProblemPPrefix,jdbcType=VARCHAR},
+      </if>
+      <if test="testProblemPtext != null" >
+        test_problem_ptext = #{testProblemPtext,jdbcType=VARCHAR},
+      </if>
+      <if test="testOptionPrefix != null" >
+        test_option_prefix = #{testOptionPrefix,jdbcType=VARCHAR},
+      </if>
+      <if test="testOptionText != null" >
+        test_option_text = #{testOptionText,jdbcType=VARCHAR},
+      </if>
+      <if test="testOptionValue != null" >
+        test_option_value = #{testOptionValue,jdbcType=DOUBLE},
+      </if>
+      <if test="testSkipValue != null" >
+        test_skip_value = #{testSkipValue,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where test_d_id = #{testDId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.example.demo.entity.Testdetail" >
+    update testdetail
+    set test_id = #{testId,jdbcType=INTEGER},
+      test_problem_id = #{testProblemId,jdbcType=INTEGER},
+      test_problem_text = #{testProblemText,jdbcType=VARCHAR},
+      test_problem_pid = #{testProblemPid,jdbcType=INTEGER},
+      test_problem_p_prefix = #{testProblemPPrefix,jdbcType=VARCHAR},
+      test_problem_ptext = #{testProblemPtext,jdbcType=VARCHAR},
+      test_option_prefix = #{testOptionPrefix,jdbcType=VARCHAR},
+      test_option_text = #{testOptionText,jdbcType=VARCHAR},
+      test_option_value = #{testOptionValue,jdbcType=DOUBLE},
+      test_skip_value = #{testSkipValue,jdbcType=VARCHAR}
+    where test_d_id = #{testDId,jdbcType=INTEGER}
+  </update>
+  
+  
+  <select id="selectValue" parameterType="com.example.demo.entity.Testdetail" resultType="DOUBLE">
+  select test_option_value from testdetail where test_id=#{testId} and test_option_prefix=#{testOptionPrefix} and test_problem_id=#{testProblemId}</select>
+  
+  <select id="selectTestDetail" parameterType="com.example.demo.entity.Testdetail" resultMap="BaseResultMap">
+  select * from testdetail where test_id=#{testId} and  test_problem_id=#{testProblemId}
+  </select>
+  
+  
+</mapper>

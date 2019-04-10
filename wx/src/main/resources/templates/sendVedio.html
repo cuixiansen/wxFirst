@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html>
+<link rel="stylesheet" href="../static/bootstrap-3.3.7/css/bootstrap.min.css" />
+	
+	<script src="../static/bootstrap-3.3.7/javascript/jQuery-1.12.4.js"></script>
+	<script type="text/javascript" src="../static/bootstrap-3.3.7/dist/js/bootstrap.min.js" ></script>
+	<script src="../static/js/sendVedio.js"></script>
+	
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<style>
+	
+		.table>tbody>tr>td{
+border:0px;
+
+}
+.titleTd{
+	text-align: left; width: 10%;padding-left: 30px;
+}
+	</style>
+	
+	<body>
+	<div style="width: 100%; display: flex;flex-direction: column;justify-content: left;">
+			
+		<table class="table table-hover table-condensed "    >
+<tr >
+<td style="text-align: left; width: 10%;padding-left: 30px;">标题</td><td  ><input type="text" style="text-align: left;" name="title"  id="title" /></td>
+</tr>
+<tr>
+<td style="text-align: left; width: 10%;padding-left: 30px;">作者</td><td><input type="text" name="catename"  id="author"  placeholder="可选填" /></td>
+</tr>
+<tr>
+<td style="text-align: left; width: 10%;padding-left: 30px;">视频</td><td><input type="file"  id="vedio" placeholder="音频文件" /></td>
+</tr>
+<tr>
+<td style="text-align: left; width: 10%;padding-left: 30px;">图片</td><td><image id="showImg"   style="width:50px;height:50px" src=""></image><input type="file"  id="vedioImg"   placeholder="音频文件" /></td>
+</tr>
+<tr>
+<td style="text-align: left; width: 10%;padding-left: 30px;">价格</td><td><input type="text" name="catename"  id="price"  placeholder="可选填" /></td>
+</tr>
+<tr>
+<td style="text-align: left; width: 10%;padding-left: 30px;">描述</td><td><input type="text" name="ctbeizhu" id="desc" /></td>
+</tr>
+<tr>
+<td style="text-align: left; width: 10%">是否推荐</td><td> <select id="nominate"><option value="1">是</option><option value="0">否</option></select></td>
+</tr>
+<tr>
+<td style="text-align: left; width: 10%">内容简介</td><td> <textarea id="text" style="height:150px;width:200px;" maxlength="255" placeholder="内容简介(最大字数255)"></textarea></td>
+</tr>
+<tr>
+<td style="text-align: left; width: 10%">上传时间</td><td> </td>
+</tr>
+
+</table>
+</div>
+<button onclick="up()">
+
+
+</button>
+	</body>
+	<script type="text/javascript">
+	function up () {
+		console.log($("#title").val() +" "+$("#author").val())
+	         console.log (	$("#vedio").get(0).files[0])
+	 console.log ($('#vedioImg').get(0).files[0])
+	         console.log(	$("#price").val())
+	        	console.log($("#nominate").val())
+	        			console.log($("#text").val())
+	        					console.log($("#desc").val())
+		var fileObj = document.getElementById("vedio").files[0]; // js 获取文件对象
+		var fileObj2 = document.getElementById("vedioImg").files[0];
+    var formFile = new FormData();
+    console.log(fileObj);
+    formFile.append("vedioFile", fileObj); 
+    formFile.append("vedioImg", fileObj2);
+    formFile.append("vedioTitle",$("#title").val()); 
+    formFile.append("vedioAuthor",$("#author").val() );
+    formFile.append("vedioPrice",$("#price").val()); 
+    formFile.append("vedioNominate",$("#nominate").val());
+    formFile.append("vedioText",$("#text").val()); 
+    formFile.append("vedioDesc",$("#desc").val());
+    formFile.append("vedioNum",0);
+    var data=formFile;
+	$.ajax({ url: "/addVedio", 
+		     //dataType: 'json',
+		   //context: document.body,
+		     processData:false,
+		     contentType:false,
+		     type:"post",
+	         data:data,
+		   success: function(msg){
+	           if(msg=="ok"){
+	        	   alert("添加成功")
+	        	  window.location.href ="showAllVedio.html"
+	           }else{
+	        	   alert("添加失败")  
+	           }
+	      }});
+	}
+	
+	//传图片的时候change事件
+	 $(function () {
+		    $("#vedioImg").change(function () {
+		        var $file = $(this);
+		        var fileObj = $file[0];
+		        var windowURL = window.URL || window.webkitURL;
+		        var dataURL;
+		        var $img = $("#showImg");
+
+		        if (fileObj && fileObj.files && fileObj.files[0]) {
+		            dataURL = windowURL.createObjectURL(fileObj.files[0]);
+		            $img.attr('src', dataURL);
+		        } else {
+		            dataURL = $file.val();
+		            var imgObj = document.getElementById("showImg");
+		            // 两个坑:
+		            // 1、在设置filter属性时，元素必须已经存在在DOM树中，动态创建的Node，也需要在设置属性前加入到DOM中，先设置属性在加入，无效；
+		            // 2、src属性需要像下面的方式添加，上面的两种方式添加，无效；
+		            imgObj.style.filter = "progid:DXImageTransform.Microsoft.AlphaImageLoader(sizingMethod=scale)";
+		            imgObj.filters.item("DXImageTransform.Microsoft.AlphaImageLoader").src = dataURL;
+
+		        }
+		    });
+		});
+
+	</script>	
+		
+	
+</html>

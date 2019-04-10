@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+	<script src="../static/bootstrap-3.3.7/javascript/jQuery-1.12.4.js"></script>
+	<script type="text/javascript" src="../static/bootstrap-3.3.7/dist/js/bootstrap.min.js" ></script>
+	
+	<link rel="stylesheet" href="../static/bootstrap-3.3.7/css/bootstrap.min.css" />
+	
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<style >
+		.table>tbody>tr>td{ 
+ border:0px; 
+
+ } 
+.titleTd{
+	text-align: left; width: 10%;padding-left: 30px;
+}
+		
+	</style>
+	<body>
+		
+		<div style="width: 100%; display: flex;flex-direction: column;justify-content: left;">
+			
+		<table class="table table-hover table-condensed "  border-color="white"" width="100%" >
+<tr >
+<td style="text-align: left; width: 10%;padding-left: 30px;">标题</td><td  ><input type="text" style="text-align: left;" name="ctid"  id="cid" readonly="true"/></td>
+</tr>
+<tr>
+<td style="text-align: left; width: 10%;padding-left: 30px;">作者</td><td><input type="text" name="catename"  id="catename"  placeholder="可选填" /><span id="c_catename"></span></td>
+</tr>
+<tr>
+<td style="text-align: left; width: 10%;padding-left: 30px;">音频</td><td><input type="file" placeholder="音频文件" /></span></td>
+</tr>
+<tr>
+<td style="text-align: left; width: 10%;padding-left: 30px;">图片</td><td><input type="file" placeholder="音频文件" /></span></td>
+</tr>
+<tr>
+<td style="text-align: left; width: 10%;padding-left: 30px;">价格</td><td><input type="text" name="catename"  id="catename"  placeholder="可选填" /><span id="c_catename"></span></td>
+</tr>
+<tr>
+<td style="text-align: left; width: 10%;padding-left: 30px;">描述</td><td><input type="text" name="ctbeizhu" id="catedesc" onblur="checkdesc(this,'beizhu');" /><span id="beizhu"></span></td>
+</tr>
+<tr>
+<td style="text-align: left; width: 10%">是否推荐</td><td> <select><option value="1">是</option><option value="0">否</option></select><span id="beizhu"></span></td>
+</tr>
+<tr>
+<td style="text-align: left; width: 10%">内容简介</td><td> <textarea style="height:150px;width:200px;" maxlength="255" placeholder="内容简介(最大字数255)"></textarea></td>
+</tr>
+<tr>
+<td style="text-align: left; width: 10%">上传时间</td><td> </td>
+</tr>
+
+</table>
+</div>
+	</body>
+</html>

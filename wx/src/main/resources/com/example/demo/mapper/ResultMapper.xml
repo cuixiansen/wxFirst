@@ -1,0 +1,228 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.example.demo.mapper.ResultMapper" >
+  <resultMap id="BaseResultMap" type="com.example.demo.entity.Result" >
+    <id column="result_id" property="resultId" jdbcType="INTEGER" />
+    <result column="test_id" property="testId" jdbcType="INTEGER" />
+    <result column="result_prefix" property="resultPrefix" jdbcType="VARCHAR" />
+    <result column="min_grade" property="minGrade" jdbcType="DOUBLE" />
+    <result column="max_grade" property="maxGrade" jdbcType="DOUBLE" />
+    <result column="result_text" property="resultText" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    result_id, test_id, result_prefix, min_grade, max_grade, result_text
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.example.demo.entity.ResultExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from result
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from result
+    where result_id = #{resultId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from result
+    where result_id = #{resultId,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.example.demo.entity.ResultExample" >
+    delete from result
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.example.demo.entity.Result" >
+    insert into result (result_id, test_id, result_prefix, 
+      min_grade, max_grade, result_text
+      )
+    values (#{resultId,jdbcType=INTEGER}, #{testId,jdbcType=INTEGER}, #{resultPrefix,jdbcType=VARCHAR}, 
+      #{minGrade,jdbcType=DOUBLE}, #{maxGrade,jdbcType=DOUBLE}, #{resultText,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.example.demo.entity.Result" >
+    insert into result
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="resultId != null" >
+        result_id,
+      </if>
+      <if test="testId != null" >
+        test_id,
+      </if>
+      <if test="resultPrefix != null" >
+        result_prefix,
+      </if>
+      <if test="minGrade != null" >
+        min_grade,
+      </if>
+      <if test="maxGrade != null" >
+        max_grade,
+      </if>
+      <if test="resultText != null" >
+        result_text,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="resultId != null" >
+        #{resultId,jdbcType=INTEGER},
+      </if>
+      <if test="testId != null" >
+        #{testId,jdbcType=INTEGER},
+      </if>
+      <if test="resultPrefix != null" >
+        #{resultPrefix,jdbcType=VARCHAR},
+      </if>
+      <if test="minGrade != null" >
+        #{minGrade,jdbcType=DOUBLE},
+      </if>
+      <if test="maxGrade != null" >
+        #{maxGrade,jdbcType=DOUBLE},
+      </if>
+      <if test="resultText != null" >
+        #{resultText,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.example.demo.entity.ResultExample" resultType="java.lang.Integer" >
+    select count(*) from result
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update result
+    <set >
+      <if test="record.resultId != null" >
+        result_id = #{record.resultId,jdbcType=INTEGER},
+      </if>
+      <if test="record.testId != null" >
+        test_id = #{record.testId,jdbcType=INTEGER},
+      </if>
+      <if test="record.resultPrefix != null" >
+        result_prefix = #{record.resultPrefix,jdbcType=VARCHAR},
+      </if>
+      <if test="record.minGrade != null" >
+        min_grade = #{record.minGrade,jdbcType=DOUBLE},
+      </if>
+      <if test="record.maxGrade != null" >
+        max_grade = #{record.maxGrade,jdbcType=DOUBLE},
+      </if>
+      <if test="record.resultText != null" >
+        result_text = #{record.resultText,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update result
+    set result_id = #{record.resultId,jdbcType=INTEGER},
+      test_id = #{record.testId,jdbcType=INTEGER},
+      result_prefix = #{record.resultPrefix,jdbcType=VARCHAR},
+      min_grade = #{record.minGrade,jdbcType=DOUBLE},
+      max_grade = #{record.maxGrade,jdbcType=DOUBLE},
+      result_text = #{record.resultText,jdbcType=VARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.example.demo.entity.Result" >
+    update result
+    <set >
+      <if test="testId != null" >
+        test_id = #{testId,jdbcType=INTEGER},
+      </if>
+      <if test="resultPrefix != null" >
+        result_prefix = #{resultPrefix,jdbcType=VARCHAR},
+      </if>
+      <if test="minGrade != null" >
+        min_grade = #{minGrade,jdbcType=DOUBLE},
+      </if>
+      <if test="maxGrade != null" >
+        max_grade = #{maxGrade,jdbcType=DOUBLE},
+      </if>
+      <if test="resultText != null" >
+        result_text = #{resultText,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where result_id = #{resultId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.example.demo.entity.Result" >
+    update result
+    set test_id = #{testId,jdbcType=INTEGER},
+      result_prefix = #{resultPrefix,jdbcType=VARCHAR},
+      min_grade = #{minGrade,jdbcType=DOUBLE},
+      max_grade = #{maxGrade,jdbcType=DOUBLE},
+      result_text = #{resultText,jdbcType=VARCHAR}
+    where result_id = #{resultId,jdbcType=INTEGER}
+  </update>
+</mapper>
